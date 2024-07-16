@@ -1,0 +1,55 @@
+<template>
+  <lightning-card
+    title="Calculator"
+    icon-name="standard:calculated_insights"
+    variant="base"
+  >
+    <div class="slds-var-m-around_medium">
+      <lightning-input
+        name="input1"
+        type="number"
+        label="First Number"
+        placeholder="type here"
+        onchange={changeHandler}
+      ></lightning-input>
+      <lightning-input
+        name="input2"
+        type="number"
+        label="Second Number"
+        placeholder="type here"
+        onchange={changeHandler}
+      ></lightning-input>
+    </div>
+    <div class="slds-var-p-around_small">
+      <lightning-button
+        variant="neutral"
+        label="Add"
+        onclick={calulatorHandler}
+        class="slds-var-p-around_small"
+      ></lightning-button>
+      <lightning-button
+        variant="neutral"
+        label="Sub"
+        onclick={calulatorHandler}
+        class="slds-var-p-around_small"
+      ></lightning-button>
+      <lightning-button
+        variant="neutral"
+        label="Multi"
+        onclick={calulatorHandler}
+        class="slds-var-p-around_small"
+      ></lightning-button>
+      <lightning-button
+        variant="neutral"
+        label="Div"
+        onclick={calulatorHandler}
+        class="slds-var-p-around_small"
+      ></lightning-button>
+    </div>
+    <div class="slds-var-m-around_medium">
+      <template lwc:if={result}>
+        <p>Output: {result}</p>
+      </template>
+    </div>
+  </lightning-card>
+</template>

@@ -1,0 +1,20 @@
+<template>
+  <lightning-card
+    title="Parent Decorator"
+    icon-name="standard:account"
+    variant="base"
+  >
+    <div class="slds-var-p-around_medium lgc-bg">
+      <lightning-input
+        name="txt"
+        type="text"
+        label="Enter Text"
+        placeholder="type here"
+        onchange={changeHandler}
+      ></lightning-input>
+    </div>
+    <div class="slds-var-p-around_medium lgc-bg">
+      <c-decorator-child-comp display-text={sometext}></c-decorator-child-comp>
+    </div>
+  </lightning-card>
+</template>
