@@ -1,0 +1,15 @@
+<template>
+  <lightning-card
+    title="Account Info"
+    icon-name="standard:account"
+    variant="base"
+  >
+    <div style="height: 300px">
+      <lightning-datatable
+        key-field="id"
+        data={wiredDataResult}
+        columns={columns}
+      ></lightning-datatable>
+    </div>
+  </lightning-card>
+</template>
