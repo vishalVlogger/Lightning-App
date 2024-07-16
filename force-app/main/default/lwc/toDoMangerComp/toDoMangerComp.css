@@ -1,0 +1,11 @@
+.incomplete {
+  background-color: yellow;
+}
+
+.complete {
+  background-color: greenyellow;
+}
+
+.formattaskname {
+  font-size: large;
+}
