@@ -1,17 +1,38 @@
 <template>
   <lightning-card
-    title="LDS Get Object Info"
+    title="LDS Get Picklist Values"
     icon-name="standard:account"
     variant="base"
   >
-    <template lwc:if={accountInfo}>
+    <template lwc:if={wireGetIndustry.data}>
       <div class="slds-var-p-around_small">
-        <p>Account API Name: {accountInfo.apiName}</p>
+        <lightning-combobox
+          name="industry"
+          label="Industry"
+          value={value}
+          placeholder="Select Industry"
+          options={wireGetIndustry.data.values}
+          onchange={handleChange}
+        ></lightning-combobox>
       </div>
+    </template>
+    <div class="slds-var-p-around_small">
+      <p>Selected Industry: {value}</p>
+    </div>
+  </lightning-card>
+  <lightning-card
+    title="Get Picklist Value Recordtype"
+    icon-name="standard:account"
+    variant="base"
+  >
+    <template lwc:if={wireGetAccPickList.data}>
       <div class="slds-var-p-around_small">
-        <template for:each={accountInfo.childRelationships} for:item="childRel">
-          <p key={childRel.childObjectApiName}>{childRel.childObjectApiName}</p>
-        </template>
+        <lightning-combobox
+          name="rating"
+          label="Rating"
+          placeholder="Select Rating"
+          options={wireGetAccPickList.data.picklistFieldValues.Rating.values}
+        ></lightning-combobox>
       </div>
     </template>
   </lightning-card>
