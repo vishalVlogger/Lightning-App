@@ -1,0 +1,31 @@
+<template>
+  <lightning-card
+    title="Navigation LWC"
+    icon-name="standard:custom64"
+    variant="base"
+  >
+    <div class="slds-var-p-around_small">
+      <lightning-button
+        variant="brand"
+        label="Navigate to Home Page"
+        title="Navigate to Home Page"
+        onclick={navigationHandler}
+        class="slds-var-p-around_small"
+      ></lightning-button>
+      <lightning-button
+        variant="brand"
+        label="Navigate to Account List"
+        title="Navigate to Account List"
+        onclick={navToAccListHandler}
+        class="slds-var-p-around_small"
+      ></lightning-button>
+      <lightning-button
+        variant="brand"
+        label="New Account"
+        title="New Account"
+        onclick={navToNewAccHandler}
+        class="slds-var-p-around_small"
+      ></lightning-button>
+    </div>
+  </lightning-card>
+</template>
