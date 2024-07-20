@@ -3,8 +3,9 @@ public with sharing class AccountHandlerClass {
   public static List<Account> getAccountInfo() {
     try {
       return [
-        SELECT Id, Name, Rating, Industry, Type
+        SELECT Id, Name, Rating, Industry, AnnualRevenue, Phone, PhotoUrl
         FROM Account
+        WHERE PhotoUrl != NULL
         WITH USER_MODE
         LIMIT 10
       ];

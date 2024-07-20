@@ -1,0 +1,41 @@
+<template>
+  <lightning-card title="Parent" icon-name="custom:custom64" variant="base">
+    <lightning-layout class="slds-var-p-around_small">
+      <lightning-layout-item>
+        <template lwc:if={displayAccount}>
+          <template for:each={displayAccount} for:item="currItem">
+            <c-child-custom-event
+              key={currItem.Id}
+              account={currItem}
+              onmessage={selectedHandler}
+            >
+            </c-child-custom-event>
+          </template>
+        </template>
+      </lightning-layout-item>
+      <lightning-layout-item class="slds-var-p-around_small">
+        <template lwc:if={selectedAccount}>
+          <img src={selectedAccount.PhotoUrl} />
+          <p>Name: {selectedAccount.Name}</p>
+          <p>Rating: {selectedAccount.Rating}</p>
+          <p>Industry: {selectedAccount.Industry}</p>
+          <p>
+            Phone:
+            <lightning-formatted-phone
+              value={selectedAccount.Phone}
+            ></lightning-formatted-phone>
+          </p>
+          <p>
+            AnnualRevenue:
+            <lightning-formatted-number
+              value={selectedAccount.AnnualRevenue}
+              format-style="currency"
+              currency-code="INR"
+              currency-display-as="symbol"
+            ></lightning-formatted-number>
+          </p>
+        </template>
+      </lightning-layout-item>
+    </lightning-layout>
+  </lightning-card>
+</template>
