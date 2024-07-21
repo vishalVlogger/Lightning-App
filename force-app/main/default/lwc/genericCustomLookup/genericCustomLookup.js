@@ -1,11 +1,11 @@
-import { LightningElement, wire } from "lwc";
+import { api, LightningElement, wire } from "lwc";
 import getsObjectRec from "@salesforce/apex/AccountHandlerClass.getsObjectRec";
 const DELAY = 300;
 
 export default class GenericCustomLookup extends LightningElement {
-  apiName = "Account";
+  @api apiName = "Account";
   searchRec;
-  objectLeabel = "Account";
+  @api objectLeabel = "Account";
   wireDataResult;
   delayTimeOut;
   selectedRecords = {
@@ -49,6 +49,7 @@ export default class GenericCustomLookup extends LightningElement {
       selectedId: outputRecords.Id,
       selectedName: outputRecords.Name
     };
+    this.sendSelectedRecords();
     this.displyOutput = false;
   }
 
@@ -57,6 +58,14 @@ export default class GenericCustomLookup extends LightningElement {
       selectedId: "",
       selectedName: ""
     };
+    this.sendSelectedRecords();
     this.displyOutput = false;
+  }
+
+  sendSelectedRecords() {
+    const myEvent = new CustomEvent("slectedrec", {
+      detail: this.selectedRecords.selectedId
+    });
+    this.dispatchEvent(myEvent);
   }
 }
