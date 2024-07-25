@@ -40,11 +40,11 @@ export default class LightningRecordForm extends NavigationMixin(
 
   navtoRecord(event) {
     this[NavigationMixin.Navigate]({
-      type: "standard__objectPage",
+      type: "standard__recordPage",
       attributes: {
         actionName: "view",
-        objectApiName: this.objectApiName,
-        recordId: event.detail.id
+        recordId: event.detail.id,
+        objectApiName: this.objectApiName
       }
     });
   }
