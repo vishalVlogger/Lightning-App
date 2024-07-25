@@ -1,0 +1,52 @@
+<template>
+  <lightning-card
+    title="Record Form"
+    icon-name="custom:custom64"
+    variant="base"
+  >
+    <lightning-record-form
+      columns="2"
+      object-api-name={objectApiName}
+      fields={fieldsItems}
+      onsuccess={navtoRecord}
+    ></lightning-record-form>
+  </lightning-card>
+  <lightning-card
+    title="Record View Form"
+    icon-name="custom:custom64"
+    variant="base"
+  >
+    <lightning-record-view-form
+      density="auto"
+      object-api-name={objectApiName}
+      record-id={recordId}
+    >
+      <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+          <lightning-output-field
+            field-name={fieldsList.name}
+            variant="standard"
+          ></lightning-output-field>
+          <lightning-output-field
+            field-name={fieldsList.type}
+            variant="standard"
+          ></lightning-output-field>
+          <lightning-output-field
+            field-name={fieldsList.phone}
+            variant="standard"
+          ></lightning-output-field>
+        </div>
+        <div class="slds-col">
+          <lightning-output-field
+            field-name={fieldsList.employees}
+            variant="standard"
+          ></lightning-output-field>
+          <lightning-output-field
+            field-name={fieldsList.rating}
+            variant="standard"
+          ></lightning-output-field>
+        </div>
+      </div>
+    </lightning-record-view-form>
+  </lightning-card>
+</template>
