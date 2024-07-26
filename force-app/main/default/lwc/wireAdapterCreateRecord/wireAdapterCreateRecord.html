@@ -1,0 +1,97 @@
+<template>
+  <lightning-card
+    title={titlePage}
+    icon-name="standard:account"
+    variant="narrow"
+  >
+    <div class="slds-var-p-around_small">
+      <template lwc:if={parentOptions}>
+        <lightning-combobox
+          name="paccount"
+          label="Parent Account"
+          placeholder="Select Account"
+          options={parentOptions}
+          onchange={accountHandleChange}
+          value={selectedParentAccount}
+          required="true"
+          message-when-value-missing="Please select a parent account."
+          field-level-help="Select an account to be used as the parent account."
+          class="validateInput"
+        ></lightning-combobox>
+      </template>
+      <lightning-input
+        type="text"
+        name="accname"
+        label="Account Name"
+        required="true"
+        message-when-value-missing="Please enter account name."
+        onchange={accountHandleChange}
+        value={selectedName}
+        class="validateInput"
+      ></lightning-input>
+      <lightning-input
+        type="date"
+        name="sladate"
+        label="SLA Expiration Date"
+        onchange={accountHandleChange}
+        value={selectedDate}
+        required="true"
+        message-when-value-missing="Please enter date"
+      ></lightning-input>
+      <template lwc:if={wireGetSLAType.data}>
+        <lightning-radio-group
+          name="slatypeGroup"
+          label="SLA Type"
+          options={wireGetSLAType.data.values}
+          type="button"
+          onchange={accountHandleChange}
+          value={selectedSLAType}
+          required="true"
+        ></lightning-radio-group>
+      </template>
+      <lightning-slider
+        name="numoflocation"
+        label="Number of Location"
+        max="100"
+        min="1"
+        step="1"
+        type="horizontal"
+        onchange={accountHandleChange}
+        value={selectedLocation}
+        variant="standard"
+        class="slds-var-p-around_small"
+      ></lightning-slider>
+      <p>
+        <span>Decription</span>
+        <lightning-input-rich-text
+          label="Decription"
+          name="selectDescription"
+          value={selectDescription}
+          onchange={accountHandleChange}
+          class="slds-var-p-around_small"
+        ></lightning-input-rich-text>
+      </p>
+    </div>
+    <div class="slds-var-p-around_small">
+      <lightning-button
+        variant="brand"
+        label="Save"
+        onclick={newAccountHandlerClick}
+      ></lightning-button>
+      <lightning-button
+        variant="brand"
+        label="Reset"
+        onclick={resetAccountHandlerClick}
+        class="slds-var-p-around_small"
+      ></lightning-button>
+      <template lwc:if={isDeleteAvailable}>
+        <lightning-button
+          variant="destructive"
+          label="Delete"
+          title="Delete Account"
+          onclick={deleteHandleClick}
+        ></lightning-button>
+      </template>
+    </div>
+  </lightning-card>
+</template>

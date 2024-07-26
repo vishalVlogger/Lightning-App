@@ -33,4 +33,19 @@ public with sharing class AccountHandlerClass {
       throw new AuraHandledException(e.getMessage());
     }
   }
+
+  @AuraEnabled(cacheable=true)
+  public static List<Account> getParentAccount() {
+    try {
+      return [
+        SELECT Id, Name, Industry, AnnualRevenue
+        FROM Account
+        WHERE AnnualRevenue != null
+        WITH USER_MoDE
+        LIMIT 10
+      ];
+    } catch (Exception e) {
+      throw new AuraHandledException(e.getMessage());
+    }
+  }
 }
