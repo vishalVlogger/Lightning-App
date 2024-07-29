@@ -1,0 +1,40 @@
+<!-- sldsValidatorIgnore -->
+<template>
+  <lightning-card
+    title="Imperative Method"
+    icon-name="standard:account"
+    variant="narrow"
+  >
+    <div class="slds-var-p-around_small">
+      <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_2-of-3">
+          <template lwc:if={wireAccountIndustry.data}>
+            <lightning-combobox
+              name="industry"
+              label="Industry"
+              placeholder="Select Industry"
+              options={wireAccountIndustry.data.values}
+              onchange={handleChange}
+            ></lightning-combobox>
+          </template>
+        </div>
+        <div class="slds-col slds-size_1-of-3" style="margin-top: 20px">
+          <lightning-button
+            variant="brand"
+            label="Fetch Account"
+            onclick={handleClick}
+          ></lightning-button>
+        </div>
+      </div>
+    </div>
+    <div class="slds-var-p-around_small" style="height: 300px">
+      <template lwc:if={loadAccount}>
+        <lightning-datatable
+          key-field="id"
+          data={loadAccount}
+          columns={columns}
+        ></lightning-datatable>
+      </template>
+    </div>
+  </lightning-card>
+</template>

@@ -1,0 +1,29 @@
+<template>
+  <lightning-card
+    title="Update Record By Imperative"
+    icon-name="standard:account"
+    variant="base"
+  >
+    <div class="slds-var-p-around_small">
+      <lightning-input
+        type="text"
+        label="Account Name"
+        read-only="true"
+        value={accName}
+      ></lightning-input>
+      <lightning-input
+        type="text"
+        label="Ticker Symbol"
+        onchange={changeHandler}
+      ></lightning-input>
+    </div>
+    <div class="slds-var-p-around_small">
+      <lightning-button
+        variant="brand"
+        label="Update"
+        onclick={handleClick}
+        value={tickerSymbol}
+      ></lightning-button>
+    </div>
+  </lightning-card>
+</template>
