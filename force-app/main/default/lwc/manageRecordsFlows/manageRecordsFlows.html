@@ -1,0 +1,12 @@
+<template>
+  <lightning-card title="Display Records">
+    <template lwc:if={inputRecordId}>
+      <lightning-record-form
+        columns="2"
+        layout-type="Compact"
+        object-api-name="Contact"
+        record-id={inputRecordId}
+      ></lightning-record-form>
+    </template>
+  </lightning-card>
+</template>
