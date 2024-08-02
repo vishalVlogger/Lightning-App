@@ -1,0 +1,62 @@
+<template>
+  <!-- Filter Section -->
+  <div class="slds-box slds-theme_shade background-border">
+    <lightning-layout horizontal-align="center">
+      <lightning-layout-item padding="around-small" size="3">
+        <lightning-combobox
+          name="type"
+          label="Type"
+          value={selectedType}
+          placeholder="Select Type"
+          options={typeOptions}
+          onchange={movieHandleChange}
+        ></lightning-combobox>
+      </lightning-layout-item>
+      <lightning-layout-item padding="around-small" size="7">
+        <lightning-input
+          type="search"
+          name="moviesearch"
+          label="Search"
+          placeholder="Search Movie/Series"
+          is-loading={loading}
+          onchange={movieHandleChange}
+        ></lightning-input>
+      </lightning-layout-item>
+      <lightning-layout-item padding="around-small" size="2">
+        <lightning-input
+          type="number"
+          name="pagenumber"
+          label="Page"
+          min="1"
+          max="100"
+          step="1"
+          message-when-range-overflow="Page Maximum value is 100"
+          message-when-range-underflow="Page Minimum value is 1"
+          onchange={movieHandleChange}
+          value={selectedPage}
+          field-level-help="Page Range 1-100"
+        ></lightning-input>
+      </lightning-layout-item>
+    </lightning-layout>
+  </div>
+  <!-- Display Section -->
+  <template lwc:if={displayAvailable}>
+    <div class="slds-scrollable_y slds-var-m-top_large slds-box displayStyle">
+      <lightning-layout horizontal-align="center" multiple-rows="true">
+        <template for:each={searchResult} for:item="searchItem">
+          <lightning-layout-item
+            padding="around-small"
+            size="3"
+            key={searchItem.imdbID}
+          >
+            <c-movie-tile
+              movie={searchItem}
+              selected-movie-id={selectedMovie}
+              onselectedmovie={movieSelectedHandler}
+            ></c-movie-tile>
+          </lightning-layout-item>
+        </template>
+      </lightning-layout>
+    </div>
+  </template>
+</template>

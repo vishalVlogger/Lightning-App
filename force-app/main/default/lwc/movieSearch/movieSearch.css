@@ -1,0 +1,9 @@
+.background-border {
+  border: 2px solid #171717;
+  border-radius: 5px;
+}
+
+.displayStyle {
+  background-color: black;
+  height: 600px;
+}

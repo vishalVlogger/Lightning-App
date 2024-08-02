@@ -1,0 +1,37 @@
+.movieborder img {
+  max-width: 300px;
+  border: 4px solid white;
+  border-radius: 5px;
+}
+
+.background-container {
+  background-color: black;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.movie-title {
+  font-size: 2rem;
+  color: yellow;
+  text-align: center;
+}
+
+.movie-text {
+  text-align: left;
+  color: white;
+}
+
+.plot {
+  max-width: 400px;
+  margin-top: 0;
+}
+
+b {
+  color: yellow;
+  font-style: italic;
+}
+
+p {
+  font-size: large;
+}

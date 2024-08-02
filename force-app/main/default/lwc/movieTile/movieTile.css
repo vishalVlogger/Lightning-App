@@ -1,0 +1,29 @@
+.title {
+  display: block;
+  background-color: black;
+  cursor: pointer;
+}
+
+.innertitle {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.lowertitle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(59, 58, 58);
+  text-align: center;
+  padding: 6px, 8px;
+  color: white;
+}
+
+.selected {
+  border: 5px solid red;
+}

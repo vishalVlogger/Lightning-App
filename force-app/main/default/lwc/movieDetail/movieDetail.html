@@ -1,0 +1,31 @@
+<template>
+  <template lwc:if={loadingComponent}>
+    <div class="slds-var-p-around_small background-container">
+      <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-var-m-around_small movieborder">
+          <img src={movieData.Poster} />
+        </div>
+        <div class="slds-col">
+          <h1 class="movie-title slds-var-m-top_small">{movieData.Title}</h1>
+          <div class="slds-var-m-top_small movie-text">
+            <p><b>Actors : </b>{movieData.Actors}</p>
+            <p><b>Genre : </b>{movieData.Genre}</p>
+            <p><b>Language : </b>{movieData.Language}</p>
+            <p><b>Director : </b>{movieData.Director}</p>
+            <p><b>Released : </b>{movieData.Released}</p>
+            <p><b>Year : </b>{movieData.Year}</p>
+            <p><b>BoxOffice : </b>{movieData.BoxOffice}</p>
+            <p class="plot"><b>Plot : </b>{movieData.Plot}</p>
+            <p>
+              <lightning-icon
+                icon-name="custom:custom48"
+                size="xx-small"
+              ></lightning-icon
+              >&nbsp; &nbsp; {movieData.Awards}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+</template>
