@@ -46,15 +46,13 @@
     <template lwc:if={showOutputAvailable}>
       <div class="text-position slds-var-p-around_small">
         <p>
-          <b>
-            Converted Value: &nbsp; &nbsp;
-            <lightning-formatted-number
-              value={convertedValue}
-              format-style="currency"
-              currency-code={toCurrenct}
-              currency-display-as="name"
-            ></lightning-formatted-number>
-          </b>
+          <b> Converted Value: </b>&nbsp;
+          <lightning-formatted-number
+            value={convertedValue}
+            format-style="currency"
+            currency-code={toCurrenct}
+            currency-display-as="name"
+          ></lightning-formatted-number>
         </p>
       </div>
     </template>

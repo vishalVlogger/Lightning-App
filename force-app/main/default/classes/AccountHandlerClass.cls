@@ -76,4 +76,25 @@ public with sharing class AccountHandlerClass {
       return e.getMessage();
     }
   }
+
+  @AuraEnabled(cacheable=true)
+  public static List<SObject> accountCustomLookup(
+    String searchKey,
+    String objectApiName
+  ) {
+    List<SObject> sObjectList = new List<SObject>();
+    try {
+      if (String.isNotBlank(searchKey)) {
+        String key = '%' + searchKey + '%';
+        String query =
+          'SELECT Id, Name FROM ' +
+          objectApiName +
+          ' WHERE Name LIKE : key ORDER BY Name LIMIT 10';
+        sObjectList = Database.query(query, AccessLevel.USER_MODE);
+      }
+      return sObjectList;
+    } catch (Exception e) {
+      throw new AuraHandledException(e.getMessage());
+    }
+  }
 }
