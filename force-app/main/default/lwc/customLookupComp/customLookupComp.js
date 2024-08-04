@@ -30,11 +30,16 @@ export default class CustomLookupComp extends LightningElement {
   changeHandler(event) {
     clearTimeout(this.delayTimeout);
     let value = event.target.value;
-    // eslint-disable-next-line @lwc/lwc/no-async-operation
-    this.delayTimeout = setTimeout(() => {
-      this.searchKey = value;
-    }, DELAY);
-    this.displayOutput = true;
+    try {
+      // eslint-disable-next-line @lwc/lwc/no-async-operation
+      this.delayTimeout = setTimeout(() => {
+        this.displayOutput = true;
+        this.searchKey = value;
+      }, DELAY);
+    } catch (error) {
+      this.displayOutput = false;
+      console.log("Error: ", error);
+    }
   }
 
   clickHandler(event) {
