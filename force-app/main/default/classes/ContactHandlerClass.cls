@@ -43,4 +43,28 @@ public with sharing class ContactHandlerClass {
       throw new AuraHandledException(e.getMessage());
     }
   }
+
+  @AuraEnabled(cacheable=true)
+  public static List<Contact> fetchContactRecord() {
+    try {
+      return [
+        SELECT
+          Id,
+          Name,
+          Title,
+          Phone,
+          Email,
+          Picture__c,
+          Rank__c,
+          AccountId,
+          Account.Name
+        FROM Contact
+        WHERE AccountId != NULL
+        WITH USER_MODE
+        LIMIT 10
+      ];
+    } catch (Exception e) {
+      throw new AuraHandledException(e.getMessage());
+    }
+  }
 }
