@@ -97,4 +97,46 @@ public with sharing class AccountHandlerClass {
       throw new AuraHandledException(e.getMessage());
     }
   }
+
+  @AuraEnabled(cacheable=true)
+  public static List<Account> infiniteLoadRecordsById() {
+    try {
+      return [
+        SELECT Id, Name, Industry, Rating
+        FROM Account
+        ORDER BY Name, Id
+        LIMIT 10
+      ];
+    } catch (Exception e) {
+      throw new AuraHandledException(e.getMessage());
+    }
+  }
+
+  @AuraEnabled(cacheable=true)
+  public static List<Account> infiniteLoadMoreData(
+    String lastName,
+    String lastId
+  ) {
+    try {
+      return [
+        SELECT Id, Name, Industry, Rating
+        FROM Account
+        WHERE Name > :lastName OR (Name = :lastName AND Id > :lastId)
+        ORDER BY Name, Id
+        LIMIT 10
+      ];
+    } catch (Exception e) {
+      throw new AuraHandledException(e.getMessage());
+    }
+  }
+
+  @AuraEnabled(cacheable=true)
+  public static Integer countOfAccounts() {
+    try {
+      AggregateResult aggr = [SELECT COUNT(Id) countRecords FROM Account];
+      return (Integer) aggr.get('countRecords');
+    } catch (Exception e) {
+      throw new AuraHandledException(e.getMessage());
+    }
+  }
 }
