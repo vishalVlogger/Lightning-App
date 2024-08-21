@@ -1,0 +1,40 @@
+<!-- sldsValidatorIgnore -->
+<template>
+  <lightning-card
+    title="Edit Datatable Rows"
+    icon-name="standard:contact"
+    variant="narrow"
+  >
+    <div class="slds-var-m-around_small">
+      <lightning-button
+        variant="destructive"
+        label="Delete Contacts"
+        title="Delete Multiple Contacts"
+        onclick={deleteContactsHandleClick}
+        disabled={disableDeleteButton}
+      ></lightning-button>
+    </div>
+    <div class="slds-var-p-around_small">
+      <template lwc:if={displayData}>
+        <c-custom-data-type
+          key-field="Id"
+          data={contact}
+          columns={columns}
+          onsave={saveHandlerClick}
+          draft-values={draftValues}
+          onrowaction={rowActionHandler}
+          onheaderaction={headerActionHandler}
+          onrowselection={rowSelectionHandler}
+        ></c-custom-data-type>
+      </template>
+    </div>
+    <template lwc:if={showModal}>
+      <c-custom-modals
+        is-view-mode={viewMode}
+        is-edit-mode={editMode}
+        record-input-id={selectedRecordId}
+        onclosemodal={closeModalsHandler}
+      ></c-custom-modals>
+    </template>
+  </lightning-card>
+</template>

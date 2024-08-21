@@ -67,4 +67,69 @@ public with sharing class ContactHandlerClass {
       throw new AuraHandledException(e.getMessage());
     }
   }
+
+  @AuraEnabled(cacheable=true)
+  public static List<ContactWrapperClass> getContactRecord(String accountId) {
+    try {
+      List<Contact> conList = [
+        SELECT
+          Id,
+          FirstName,
+          LastName,
+          Title,
+          Phone,
+          Email,
+          LeadSource,
+          AccountId,
+          (SELECT Id FROM Cases)
+        FROM Contact
+        WHERE AccountId = :accountId
+        WITH USER_MODE
+        LIMIT 10
+      ];
+
+      List<ContactWrapperClass> wrapperList = new List<ContactWrapperClass>();
+      for (Contact con : conList) {
+        ContactWrapperClass conWrap = new ContactWrapperClass();
+        conWrap.Id = con.Id;
+        conWrap.FirstName = con.FirstName;
+        conWrap.LastName = con.LastName;
+        conWrap.Title = con.Title;
+        conWrap.Phone = con.Phone;
+        conWrap.Email = con.Email;
+        conWrap.LeadSource = con.LeadSource;
+        conWrap.numberOfCases = con.Cases.size();
+        if (con.LeadSource == 'Phone Inquiry' && String.isBlank(con.Phone)) {
+          conWrap.isBadContact = true;
+        } else {
+          conWrap.isBadContact = false;
+        }
+        wrapperList.add(conWrap);
+      }
+      return wrapperList;
+    } catch (Exception e) {
+      throw new AuraHandledException(e.getMessage());
+    }
+  }
+
+  public class ContactWrapperClass {
+    @AuraEnabled
+    public String Id;
+    @AuraEnabled
+    public String FirstName;
+    @AuraEnabled
+    public String LastName;
+    @AuraEnabled
+    public String Title;
+    @AuraEnabled
+    public String Phone;
+    @AuraEnabled
+    public String Email;
+    @AuraEnabled
+    public String LeadSource;
+    @AuraEnabled
+    public Integer numberOfCases;
+    @AuraEnabled
+    public Boolean isBadContact;
+  }
 }
