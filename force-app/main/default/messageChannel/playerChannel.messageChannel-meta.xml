@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>PlayersChannel</masterLabel>
+    <isExposed>true</isExposed>
+    <description>This is Player Dtails Send the Data</description>
+    <lightningMessageFields>
+        <fieldName>playerId</fieldName>
+        <description>This is the player Id that changed</description>
+    </lightningMessageFields>
+</LightningMessageChannel>

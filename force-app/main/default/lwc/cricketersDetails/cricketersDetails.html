@@ -1,0 +1,25 @@
+<template>
+  <template lwc:if={loadingComponent}>
+    <div class="slds-var-p-around_small background-container">
+      <template for:each={playersDetails} for:item="player">
+        <div class="slds-grid slds-gutters" key={player.Id}>
+          <div class="slds-col slds-var-m-around_small playerborder">
+            <img src={player.Image_url__c} alt="Player Image" />
+          </div>
+          <div class="slds-col">
+            <h1 class="player-title slds-var-m-top_small">{player.Name}</h1>
+            <div class="slds-var-m-top_small player-text">
+              <p><b>Spouse : </b>{player.Spouse__c}</p>
+              <p><b>DOB : </b>{player.Born__c}</p>
+              <p><b>Nationality : </b>{player.Nationality__c}</p>
+              <p><b>Runs : </b>{player.Runs__c}</p>
+              <p><b>DOJ : </b>{player.Date_of_Joined__c}</p>
+              <p><b>Height : </b>{player.Height__c}</p>
+              <p><b>Awards : </b>{player.Awards__c}</p>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+  </template>
+</template>

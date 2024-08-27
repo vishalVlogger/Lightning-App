@@ -1,0 +1,49 @@
+<template>
+  <div title="Find Players" class="slds-box slds-theme_shade background-border">
+    <lightning-layout horizontal-align="center">
+      <lightning-layout-item padding="around-small" size="6">
+        <template lwc:if={wireCricketerNationality.data}>
+          <lightning-combobox
+            name="nationality"
+            label="Nationality"
+            value={selectedNationality}
+            placeholder="Select Nationality"
+            options={wireCricketerNationality.data.values}
+            onchange={nationalityChangeHandler}
+          ></lightning-combobox>
+        </template>
+      </lightning-layout-item>
+      <lightning-layout-item
+        padding="around-small"
+        size="6"
+        style="margin-top: 23px"
+      >
+        <lightning-button
+          variant="brand"
+          label="New Cricketer"
+          onclick={navToCrickterRec}
+        ></lightning-button>
+      </lightning-layout-item>
+    </lightning-layout>
+  </div>
+  <!-- Display Sections -->
+  <template lwc:if={displayAvailable}>
+    <div class="slds-scrollable_y slds-var-m-top_large slds-box displayStyle">
+      <lightning-layout horizontal-align="center" multiple-rows>
+        <template for:each={playersOptions} for:item="playerItem">
+          <lightning-layout-item
+            padding="around-small"
+            size="3"
+            key={playerItem.Id}
+          >
+            <c-cricket-title
+              player={playerItem}
+              selected-player-id={selectedPlayer}
+              onplayerdetails={playerDetailHandler}
+            ></c-cricket-title>
+          </lightning-layout-item>
+        </template>
+      </lightning-layout>
+    </div>
+  </template>
+</template>
