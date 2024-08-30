@@ -3,6 +3,10 @@
   "plugins": ["prettier-plugin-apex", "@prettier/plugin-xml"],
   "overrides": [
     {
+      "files": "**/*.cls",
+      "options": { "parser": "apex" }
+    },
+    {
       "files": "**/lwc/**/*.html",
       "options": { "parser": "lwc" }
     },
