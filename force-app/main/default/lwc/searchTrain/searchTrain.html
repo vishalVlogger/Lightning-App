@@ -1,0 +1,74 @@
+<template>
+  <div
+    class="slds-box slds-theme_shade"
+    style="border: 2px solid black; border-radius: 5px"
+  >
+    <lightning-layout horizontal-align="center">
+      <lightning-layout-item padding="around-small" size="3">
+        <lightning-input
+          type="text"
+          label="From"
+          name="fromStation"
+          onchange={handleChange}
+          required="true"
+          message-when-value-missing="Please enter a From Station"
+          placeholder="Enter From Station"
+        >
+        </lightning-input>
+      </lightning-layout-item>
+      <lightning-layout-item padding="around-small" size="3">
+        <lightning-input
+          type="text"
+          label="To"
+          name="toStation"
+          onchange={handleChange}
+          required="true"
+          message-when-value-missing="Please enter a To Station"
+          placeholder="Enter To Station"
+        >
+        </lightning-input>
+      </lightning-layout-item>
+      <lightning-layout-item padding="around-small" size="3">
+        <lightning-input
+          type="date"
+          label="Date of Journey"
+          name="trainDate"
+          onchange={handleChange}
+          required="true"
+          message-when-value-missing="Please enter a Date"
+          placeholder="Enter Date"
+        >
+        </lightning-input>
+      </lightning-layout-item>
+      <lightning-layout-item
+        padding="around-small"
+        size="3"
+        style="margin-top: 23px"
+      >
+        <lightning-button
+          variant="brand"
+          label="Get Details"
+          onclick={handleClick}
+          disabled={disableButtonActive}
+        >
+        </lightning-button>
+      </lightning-layout-item>
+    </lightning-layout>
+  </div>
+
+  <template if:true={displayAvailable}>
+    <div class="slds-scrollable_y slds-var-m-top_large">
+      <lightning-layout horizontal-align="center" multiple-rows>
+        <template for:each={searchResult} for:item="resultItem">
+          <lightning-layout-item
+            key={resultItem.train_number}
+            padding="around-small"
+            size="3"
+          >
+            <c-train-details train={resultItem}></c-train-details>
+          </lightning-layout-item>
+        </template>
+      </lightning-layout>
+    </div>
+  </template>
+</template>
